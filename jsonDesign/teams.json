@@ -1,0 +1,27 @@
+{
+  "id": "teamId",
+  "teamName": "nameOfTheTeam",
+  "members": [
+    {
+      "id": "idOfTheMember",
+      "username": "nameOfTheMember",
+      "initials": "initialsOfTheMember",
+      "url": "urlOfTheMember",
+      "type": "normal/admin",
+    }
+  ],
+  "boards": [
+    {
+      "boardId": "id of the board",
+      "boardName": "name of the board",
+      "boardUrl": "url of the board",
+      "backgroundColor": "backgroundColorOfTheBoard"
+    }
+  ],
+  "permissionLevelBoard": "public/teamVisible/private",
+  "pref": {
+    "backgroundColor": "color",
+    "backgroundImage": "image",
+    "coverImage": "image"
+  }
+}

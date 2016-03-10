@@ -1,0 +1,53 @@
+{
+  "id": "idOfTheBoard",
+  "name": "nameOfTheBoard",
+  "url": "urlOfTheBoard",
+  "organization": {
+    "id": "idOfTheOrganization",
+    "name": "nameOfTheOrganization",
+    "url": "urlOfTheOrganization"
+  },
+  "prefs": {
+    "backgroundColor": "someColor",
+    "permissionLevel":"Public/Members/TeamMembers",
+    "backgroundImage": "backgroundImage",
+    "comments": "Public/Members/TeamMembers"
+  },
+  "lists":[
+    {
+      "id": "listId",
+      "name": "nameOfTheList"
+    }
+  ],
+  "members": [
+    {
+      "id": "idOfTheMember",
+      "username": "nameOfTheMember",
+      "initials": "initialsOfTheMember",
+      "url": "urlOfTheMember",
+      "avatar": "avatarOfTheMember"
+    }
+  ],
+  "activity": [
+    {
+      "id": "SomeId",
+      "action": "added/removed/attached/moved/marked",
+      "type": "member/card/attachment/label/checklist",
+      "itemUrl": "url of the card/attachment/checklist",
+      "nameOfTheItem": "name of the item",
+      "idOfTheItem": "some Ids",
+      "from": {
+        "id": "someId",
+        "name": "name",
+        "type": "type"
+      },
+      "to": {
+        "id": "someId",
+        "name": "name",
+        "type": "type"
+      },
+      "dateTime": "dateTimeAdded"
+    }
+  ],
+  "lastActivity":"dateTimeLastActivity"
+}

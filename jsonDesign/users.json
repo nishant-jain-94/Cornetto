@@ -1,0 +1,77 @@
+{
+  "id": "userId",
+  "userName": "userNameOfTheUser",
+  "firstName": "firstName",
+  "lastName": "lastName",
+  "emailId": "emailId",
+  "password": "hashedPassword",
+  "url": "urlOfTheUser",
+  "boards": [
+    {
+      "_comment": "a user may have its own set of boards",
+      "id": "id of the board",
+      "name": "name of the board",
+      "url": "url of the board",
+      "backgroundColor": "backgroundColorOfTheBoard"
+    }
+  ],
+  "teams": [
+    {
+      "_comment": "a user may belong to a team and the team has its own set of boards",
+      "id": "teamId",
+      "name": "name Of the Team",
+      "url": "url of the Team",
+      "boards": [
+        {
+          "id": "id of the board",
+          "name": "name of the board",
+          "url": "url of the board",
+          "backgroundColor": "backgroundColorOfTheBoard"
+        }
+      ]
+    }
+  ],
+  "activity": [
+    {
+      "_comment": "refersToTheActivityOfTheUser",
+      "id": "idOfTheActivity",
+      "action": "added/removed/attached/moved/marked/edited/deleted",
+      "board": {
+        "id": "boardId",
+        "name": "nameOfTheBoard",
+        "url": "urlOfTheBoard"
+      },
+      "item": {
+        "id": "idOfTheItem",
+        "type": "member/card/attachment/label/checklist/comment",
+        "url": "url of the card/attachment/checklist/comment (may not apply)",
+        "name": "name of the item",
+        "fromId": "fromId",
+        "from": "fromWhat",
+        "toId": "toId",
+        "to": "toWhat",
+        "dateTime": "dateTimeAdded"
+      }
+    }
+  ],
+  "initial": "any2Chars",
+  "avatar": "avatarOfTheUser",
+  "bio": "dataOfTheUser",
+  "emailAddress": [
+    {
+      "id": "someId",
+      "emailId": "emailId",
+      "addedOn": "someDateTime"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sessionId",
+      "deviceName": "nameOfDevice",
+      "deviceId": "deviceId",
+      "deviceType": "typeOfDevice",
+    }
+  ],
+  "createdOn": "dateTime",
+  "emailNotifications": "never/periodically/instantly"
+}

@@ -1,0 +1,140 @@
+{
+	"id": "id of the board",
+	"name": "name of the board",
+  "urlOfTheBoard": "",
+  "organization": "",
+  "organizationId": "",
+  "isOpen": "true/false",
+  "subscribers": "",
+  "members": [{
+		"id": "id of the person",
+		"username": "name of the person",
+		"avatar": "avatar",
+		"memberType": "admin/normal",
+    "initials":""
+	}],
+  "createdOn": "",
+  "createdBy": "",
+  "creatorId": "",
+	"dateTimeLastModified": "",
+	"preferences": {
+		"backgroundColor": "color to be used as the backgroundColor",
+		"backgroundImage": "backgroundImage to be applied",
+    "permissionLevelCommenting": "disabled/members/team members/public".
+	},
+	"cards": [{
+		"id": "1234098734",
+		"cardTitle  ": "Json design for the dashboard",
+		"description": "The json design should contain all the meta tags available on the dashboard.",
+		"addedOn": "22-12-2015 11:34 AM",
+		"addedBy": "Nishant Jain",
+    "creatorId":"",
+		"dueDate": "24th Jan 2015(optional)",
+		"positionInList": "",
+		"isArchived": "true/false",
+    "subscribers": [
+      {
+
+      }
+    ],
+    "belongsTo": {
+      "dashboardId":"",
+      "dashboardName": "",
+      "listId":"",
+      "listName":""
+    },
+		"badges": {
+			"checkListItems": "4",
+			"itemsChecked": "0",
+			"comments": "1",
+			"attachments": "1",
+			"description": "true",
+			"dueDate": "null"
+		},
+		"checkList": [{
+			"id": "7786646922",
+			"title": "titleOfTheCheckList",
+			"items": [{
+				"itemId": "1234524323",
+				"text": "something",
+				"dateTimeAdded": "",
+				"lastModifiedOn": "",
+				"addedBy": "",
+        "creatorId":""
+				"lastModifiedBy": "",
+        "lastModifiedById":"",
+				"checkedState": "",
+				"modifiedCheckedStateOn": "",
+				"modifiedCheckedStateBy": ""
+			}, {
+				"itemId": "SomeID",
+				"text": "something",
+				"dateTimeAdded": "",
+				"lastModifiedOn": "",
+				"addedBy": "",
+				"lastModifiedBy": "",
+				"checkedState": "",
+				"modifiedCheckedStateOn": "",
+				"modifiedCheckedStateBy": ""
+			}]
+		}],
+		"members": [{
+			"id": "someId",
+			"membersName": "nameOfThePersonAdded",
+			"url": "urloftheperson",
+			"assignedBy": "person who added",
+			"assignedOn": "datetime",
+			"initials": "first character of his firstName and the lastname"
+		}, {
+			"id": "someId",
+			"membersName": "nameOfThePersonAdded",
+			"url": "urloftheperson",
+			"assignedBy": "person who added",
+			"assignedOn": "datetime",
+			"initials": "first character of his firstName and the lastname"
+		}],
+		"activity": [{
+			"id": "898324234234",
+			"action": "added/removed/attached/moved/marked",
+			"type": "member/card/attachment/label/checkList",
+			"dateTime": "timestamp",  
+			"actor": "id of the user who performed the action",
+			"from": "from id if applicable",
+      "fromName": "",
+			"to": "to id",
+      "toName": "toName"
+		}, {
+			"id": "3242348932",
+			"action": "added/removed/attached/moved",
+			"type": "member/card/attachment/label",
+			"dateTime": "timestamp",
+			"actor": "id of the user who performed the action",
+			"from": "from id if applicable",
+			"to": "to id"
+		}],
+		"attachements": [{
+			"id": "32189123312",
+			"name": "name of the attachement",
+			"attachementType": "jpg/pdf/txt/png",
+			"addedBy": "name of the person who added it",
+			"addedOn": "dateTime"
+		}, {
+			"id": "22234289234",
+			"name": "name of the attachement",
+			"attachementType": "jpg/pdf/txt/png",
+			"addedBy": "name of the person who added it",
+			"addedOn": "dateTime"
+		}],
+		"comments": {
+			"addedBy": "id of the person",
+			"dateTime": "date time it got added",
+			"description": "someText",
+			"mentionedMembers": [{
+				"id": "id of the person being mentioned",
+				"url": "url of the person mentioned",
+				"indices": "10-22"
+			}],
+			"lastModifiedOn": "dateTime"
+		}
+	}]
+}

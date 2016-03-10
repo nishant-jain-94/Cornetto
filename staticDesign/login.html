@@ -1,0 +1,39 @@
+<section ng-controller="login" ng-cloak="" class="">
+  <form method="post" action="/signup">
+    <div layout="row" layout-align="center">
+      <md-input-container class="md-block">
+        <label>Username</label>
+        <input required="" name="email" ng-model="user.username">
+        <div ng-messages="userForm.name.$error">
+          <div ng-messages="userForm.name.$error">
+            <div ng-message="required">
+              Name is required.
+            </div>
+            <div ng-message="md-maxlength">
+              The name has to be less than 30 characters long.
+            </div>
+          </div>
+        </div>
+      </md-input-container>
+    </div>
+    <div layout="row" layout-align="center">
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input required="" name="password" ng-model="user.password" type="password">
+        <div ng-messages="userForm.name.$error">
+          <div ng-messages="userForm.name.$error">
+            <div ng-message="required">
+              Name is required.
+            </div>
+            <div ng-message="md-maxlength">
+              The name has to be less than 30 characters long.
+            </div>
+          </div>
+        </div>
+      </md-input-container>
+    </div>
+    <div layout="row" layout-align="center">
+      <md-button class="md-raised md-primary" flex=33 type="submit">Login</md-button>
+    </div>
+  </form>
+</section>

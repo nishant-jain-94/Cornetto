@@ -1,0 +1,57 @@
+html
+  head
+    meta(charset="utf-8")
+    title Project_Trello
+    link(rel="stylesheet",href="../stylesheets/bootstrap.min.css")
+    link(rel="stylesheet",href="../stylesheets/style.css")
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700',rel='stylesheet',type='text/css')
+    script(src='../javascripts/jquery-1.11.3.min.js')
+  body
+    div.surface
+      div.tc-page-header
+        div.tc-page-header-boards
+          |Board
+        div.tc-page-header-name
+          |Trello Clone
+        div.tc-page-header-options
+          div.tc-page-header-user
+            |Nishant Jain
+          div.tc-page-header-notifications
+            |Notifications
+      div.tc-page-boards-view
+        div.tc-page-board-section
+          div.tc-page-board-section-header
+            div.tc-page-board-section-header-icon
+            div.tc-page-board-section-header-text
+              |My Boards
+          div.tc-page-board-section-list
+            each boardSection in boards
+              div.tc-page-board-section-list-item.js-page-board-section-list-item
+                a(href='/b/'+boardSection._id,style="backgroundColor: #{boardSection.prefs.backgroundColor}")
+                  !{boardSection.name}
+            div.tc-page-board-section-list-item
+              a(href='#',style="background-color: rgb(210,215,211)",data-toggle="modal" data-target=".pop-over-modal")
+                |Create new board...
+    div.modal.fade.pop-over-modal
+      div.modal-dialog.modal-sm
+        div.modal-content
+          div.modal-header
+            button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true")
+                &times;
+            h4.modal-title
+              |Create Board
+          div.modal-body
+            form
+              div.form-group
+                label(for="js-tc-board-title")
+                  |Title
+                input(type="text",class="form-control",id="js-tc-board-title",placeholder="Like something")
+              div.form-group
+                label(for="js-tc-board-team")
+                  |Team
+                input(type="text",class="form-control",id="js-tc-board-team",placeholder="")
+              button(type="button",data-dismiss="modal",class="btn btn-primary js-tc-add-board")
+                |Submit
+  script(src='../javascripts/script.js')
+  script(src='../javascripts/bootstrap.min.js')

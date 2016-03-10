@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Trello</title>
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="css/web fonts/texgyreheros_regular_macroman/stylesheet.css"></link>
+    <link rel="stylesheet" href="angular-material/angular-material.min.css"></link>
+    <script src="angular/angular.min.js"></script>
+    <script src="angular-route/angular-route.min.js"></script>
+    <script src="angular-animate/angular-animate.min.js"></script>
+    <script src="angular-aria/angular-aria.min.js"></script>
+    <script src="angular-material/angular-material.min.js"></script>
+    <script src="jquery/dist/jquery.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
+    <link rel="stylesheet" href="css/indexStyle.css"></link>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+  </head>
+  <body ng-app="cornetto">
+    <section class="tc-wrapper" layout="column">
+      <section class="tc-header-wrapper" ng-class="pageCtrl">
+        <h1>cornetto.</h1>
+        <h2>
+          Cornetto is the free, flexible, and visual way to organize anything with anyone.
+        </h2>
+        <h4>
+          Drop the lengthy email threads, out-of-date spreadsheets, no-longer-so-sticky notes, and clunky software for managing your projects. Cornetto lets you see everything about your project in a single glance.
+        </h4>
+        <div ng-cloak="" class="tc-login-section" layout="row" layout-align="center">
+          <md-button ng-href="#/login" class='md-primary md-raised' flex="20">Login</md-button>
+        </div>
+      </section>
+      <div class="tc-page" layout="column" ng-view>
+      </div>
+    </section>
+    <script src="javascript/app.js"></script>
+  </body>
+</html>

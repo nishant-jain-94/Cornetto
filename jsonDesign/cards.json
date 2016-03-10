@@ -1,0 +1,89 @@
+{
+  "id": "idOfTheCard",
+  "title": "titleOfTheCard",
+  "list": {
+    "id": "idOfTheListItBelongsTo",
+    "name": "nameOfTheListItBelongsTo"
+  },
+  "board": {
+    "id": "idOfTheBoardItBelongsTo",
+    "name": "nameOfTheBoardItBelongsTo",
+    "url": "urlToTheBoard"
+  },
+  "badges": {
+    "isDescAvailable": "true/false",
+    "checkListItems": "numItemsInCheckList",
+    "numberOfItemsChecked": "some number",
+    "numberOfComments": "some number",
+    "isAttachmentAvailable": "true/false"
+  },
+  "members": [
+    {
+      "id": "usersId",
+      "username": "usernameOfTheUser",
+      "initials": "initialOfTheUser",
+      "url": "urlOfTheUser",
+      "avatar": "avatarOfTheUser"
+    }
+  ],
+  "checkLists": [
+    {
+      "id": "idOfTheCheckList",
+      "title": "titleOfTheCheckList",
+      "checkListItems": [
+        {
+          "id": "idOfTheItem",
+          "text": "textOfTheItem",
+          "checkedState": "true/false",
+          "checkedOn": "date",
+          "createdOn": "dateTime",
+          "modifiedOn": "dateTime",
+          "createdBy": "namefTheUserCreated",
+          "creatorId": "idOfTheCreator"
+        }
+      ]
+    }
+  ],
+  "attachments": {
+    "cover": "itemId",
+    "items": [
+      {
+        "id": "32189123312",
+        "name": "name of the attachement",
+        "attachementType": "jpg/pdf/txt/png",
+        "addedBy": "name of the person who added it",
+        "idOfThePersonAdded":"id",
+        "addedOn": "dateTime"
+      }
+    ]
+},
+  "comments": {
+    "addedBy": "name of the person",
+    "addedById": "id of the person who added It",
+    "dateTime": "date time it got added",
+    "description": "someText",
+    "mentionedMembers": [{
+      "id": "id of the person being mentioned",
+      "url": "url of the person mentioned",
+      "indices": "10-22"
+    }],
+    "lastModifiedOn": "dateTime"
+  },
+  "activity": [
+    {
+      "id": "SomeId",
+      "action": "added/removed/attached/moved/marked",
+      "type": "member/card/attachment/label/checklist",
+      "board": "boardId",
+      "boardName": "nameOfTheBoard",
+      "itemUrl": "url of the card/attachment/checklist",
+      "nameOfTheItem": "name of the item",
+      "idOfTheItem": "some Ids",
+      "fromId":"fromId",
+      "from": "fromWhat",
+      "toId": "toId",
+      "to": "toWhat",
+      "dateTime": "dateTimeAdded"
+    }
+  ]
+}

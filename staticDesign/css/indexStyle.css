@@ -1,0 +1,96 @@
+html,body {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  background-color: white;
+}
+
+.tc-wrapper {
+  line-height: 10%;
+  width: 60%;
+  height: 100%;
+  margin: auto;
+  margin-right: 20%;
+  margin-left: 20%;
+  position: relative;
+  font-family: 'Open Sans';
+  font-size: 1.2em;
+  line-height: 1.5px;
+}
+
+.tc-header-wrapper {
+  text-align: center;
+  width: 100%;
+  color: rgb(34,49,63);
+  position: absolute;
+  top: 10%;
+}
+
+.tc-header-wrapper h1 {
+  font-size: 5em;
+  font-weight: 700;
+  z-index: 99999999;
+}
+
+.tc-header-wrapper h2 {
+  font-size: 2em;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.tc-header-wrapper h4 {
+  padding: 10px;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.tc-page {
+  top: 25%;
+  bottom:0%;
+  position: absolute;
+  background-color: white;
+  z-index: 88888;
+  width: 100%;
+}
+
+.login {
+  top: 2%;
+  transition: all 0.7s ease-in-out;
+  transition-delay: 0.5s;
+  position: absolute;
+}
+
+.login h2,.login h4, .login .tc-login-section{
+  display: none;
+  transition: all 1s ease-in;
+  visibility: collapse;
+}
+
+@keyframes slideInUp {
+    from    { transform:translateY(100%); }
+    to      { transform: translateY(0); }
+}
+
+@keyframes slideInOut {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.tc-page.ng-enter,.page-about.ng-enter {
+  animation: slideInUp 1s both ease-in-out;
+  z-index: 7777;
+}
+
+.tc-page.ng-leave,.page-about.ng-leave {
+  animation: slideInOut 2s both ease-out;
+  z-index: 8888;
+}
+
+@font-face {
+    font-family: 'helvetica';
+    src: url('helvetica-neue-light.otf/HelveticaNeue-Light.otf');
+}

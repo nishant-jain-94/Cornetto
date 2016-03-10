@@ -1,0 +1,39 @@
+html
+  head
+    meta(charset="utf-8")
+    title Project-Trello
+    link(href="css/bootstrap.min.css",rel="stylesheet")
+    link(href="css/style.css",rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700",rel="stylesheet",type="text/css")
+  body
+    div.tc-surface
+      div.tc-page-header
+        div.tc-page-header-boards
+          |Boards
+        div.tc-page-header-name
+          |Trello Clone
+        div.tc-page-header-options
+          div.tc-page-header-user
+            |Nishant Jain
+          div.tc-page-header-notifications
+            |Notifications
+      div.tc-page-board
+        div.tc-page-board-options
+          div.tc-page-board-options-title
+            !{board.name}
+          div.tc-page-board-options-starred
+            |Something
+          div.tc-page-board-options-permissions
+            |Some Permissions
+        div.tc-page-board-lanes
+          each lane in board.lanes
+            div.tc-page-board-lanes-wrapper
+              div.tc-page-board-lane
+                div.tc-page-board-lane-title
+                  !{lane.name}
+                div.tc-page-board-list-lane-card
+                  each card in board[lane._id]
+                    div.tc-page-board-lane-card
+                      !{card.title}
+                  div.tc-page-board-add-card
+                    Add new card...

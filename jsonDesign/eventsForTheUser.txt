@@ -1,0 +1,34 @@
+User:
+1. When the user signups for the first time he/she will be asked for their
+  1.1 firstName & lastName
+  1.2 emailId &
+  1.3 password
+
+2. While registering the new user
+  2.1 A new id for the user will be generated.
+  2.2 A new url referring to the users dashboard will be generated
+  2.3 firstName,lastName,userName,emailId,hashedPassword will be set as what the user gave.
+  2.3 A default avatar for the user will be set.
+  2.4 An initial will be set depending upon the firstName and the lastName of the user.
+  2.5 The date/time when the account got created will be set.
+
+3. The users.json for the new user will look as follows and then would be       added to the users collection:
+    {
+      "id": "userId",
+      "userName": "userNameOfTheUser",
+      "firstName": "firstName",
+      "lastName": "lastName",
+      "emailId": "emailId",
+      "password": "hashedPassword",
+      "url": "urlOfTheUser",
+      "boards": [],
+      "teams": [],
+      "activity": [],
+      "cards": [],
+      "initial": "any2Chars",
+      "avatar": "defaultAvatar",
+      "bio": "void",
+      "emailAddress": [],
+      "createdOn": "dateTime",
+      "emailNotifications": "default to instantly"
+    }

@@ -1,0 +1,82 @@
+/* Page Header CSS*/
+.tc-page-header {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  background-color: rgb(34,49,63);
+  justify-content: space-between;
+  color: white;
+}
+
+.tc-page-header-boards,.tc-page-header-user,.tc-page-header-notifications {
+  margin : 5px;
+  padding: 10px;
+  background: rgb(52,73,94);
+  border-radius: 5px;
+  font-family: 'Open Sans',sans-serif;
+  font-weight: 700;
+}
+
+.tc-page-header-name {
+  color: white;
+  font-size: 2.5em;
+  font-family: HoneyScript;
+}
+
+.tc-page-header-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+@font-face {
+  font-family: HoneyScript;
+  src: url('./fonts/HoneyScript-SemiBold.ttf');
+}
+/* End of page header css */
+
+/* Board View*/
+.tc-page-boards-view {
+  padding: 10px;
+  margin: 10px
+}
+
+.tc-page-board-section-header-text {
+  font-family: 'Open Sans',sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+/* End of board view */
+
+/*Board Section*/
+.tc-page-board-section {
+  padding: 30px;
+}
+
+.tc-page-board-section-header-text {
+  margin-bottom: 10px;
+}
+/* End of Board Section */
+
+/* Board List */
+.tc-page-board-section-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tc-page-board-section-list > * {
+  margin: 0.5% 0 0 1%;
+}
+
+.tc-page-board-section-list-item > a {
+  padding: 10px;
+  width: 250px;
+  background-color: rgb(44,62,80);
+  color: white;
+  border-radius: 2px;
+  height: 80px;
+  display: block;
+  text-decoration: none;
+  font-family: 'Open Sans',sans-serif;
+  font-weight: 700;
+}
+/* End Of Board List */
