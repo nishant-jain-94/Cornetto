@@ -12,7 +12,7 @@ var BoardSchema = new mongoose.Schema({
   "prefs": {
     "backgroundColor": { type: String, required: true },
     "permissionLevel": { type: String, required: true },
-    "backgroundImage": { type: String, required: true },
+    "backgroundImage": { type: String },
     "comments": {type: String, required: true }
   },
   "lanes": [
@@ -64,7 +64,8 @@ BoardSchema.statics.createBoard = function(board,cb){
 * cb - refers to the callback to be called once the update operation is completed.
 */
 BoardSchema.statics.updateBoardName = function(boardId,boardName,cb) {
-  this.findByIdAndUpdate(boardId,{'name':boardName},{new: true},cb);
+  console.log(boardId,boardName);
+  this.findByIdAndUpdate(mongoose.Types.ObjectId(boardId),{'name':boardName},{new: true},cb);
 };
 
 /* Update Boards Background color
