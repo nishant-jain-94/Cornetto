@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 
 var cardSchema = new mongoose.Schema({
-    "title": String,
-    "laneId": mongoose.Schema.Types.ObjectId,
-    "boardId": mongoose.Schema.Types.ObjectId,
+    "title": {type: String, required: true},
+    "description": {type: String, required: true},
+    "laneId": { type: mongoose.Schema.Types.ObjectId,required: true },
+    "boardId": { type:mongoose.Schema.Types.ObjectId, required: true },
     "members": [
       {
         "type": mongoose.Schema.Types.ObjectId,
@@ -12,10 +13,10 @@ var cardSchema = new mongoose.Schema({
     ],
     "checkLists": [
       {
-        "title": String,
+        "title": {type: String, required: true},
         "checkListItems": [
           {
-            "text": String,
+            "text": {type: String, required: true},
             "checkedState": Boolean,
             "checkedOn": Date,
             "createdOn": Date,
@@ -30,21 +31,24 @@ var cardSchema = new mongoose.Schema({
       "cover": mongoose.Schema.Types.ObjectId,
       "items": [
         {
-          "name": String,
-          "attachementType": String,
-          "addedBy": String,
-          "idOfThePersonAdded": mongoose.Schema.Types.ObjectId,
-          "addedOn": Date,
-          "path": String
+          "name": {type: String, required: true},
+          "attachementType": {type: String, required: true},
+          "addedBy": {type: String, required: true},
+          "idOfThePersonAdded": {type: mongoose.Schema.Types.ObjectId, required: true},
+          "addedOn": {type: Date, required: true},
+          "path": {type: String, required: true}
         }
       ]
-  },
-    "comments": [{
+    },
+    "topTwentyComments": [{
       "addedById": mongoose.Schema.Types.ObjectId,
       "dateTime": Date,
       "description": String,
       "lastModifiedOn": Date
+    }],
+    "topTwentyActivites": [{
+
     }]
-});
+},{timestamps: true});
 
 module.exports = mongoose.model('Card',cardSchema,'cards');
