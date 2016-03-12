@@ -121,6 +121,14 @@ describe('Create a new Board',function() {
 
   });
 
+  describe('#get an existing board with invalid boardId',function() {
+    it('should throw an exception',function(done) {
+      request
+        .get('/boards/56e3a97450f83be1329ass08b')
+        .expect(500,"Argument passed in must be a single String of 12 bytes or a string of 24 hex characters",done)
+    });
+  })
+
   describe("#add a new lane",function() {
     var findByIdAndUpdateStub = sinon.stub(board,'findByIdAndUpdate');
     beforeEach(function() {

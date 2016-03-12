@@ -11,9 +11,9 @@ var BoardSchema = new mongoose.Schema({
   },
   "prefs": {
     "backgroundColor": { type: String, required: true },
-    "permissionLevel": { type: String, required: true },
+    "permissionLevel": { type: String, required: true, enum: ['Public','Private'] },
     "backgroundImage": { type: String },
-    "comments": {type: String, required: true }
+    "comments": {type: String, required: true, enum: ['Public','Private'] }
   },
   "lanes": [
     {

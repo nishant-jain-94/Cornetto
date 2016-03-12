@@ -31,18 +31,17 @@ router.post('/l/updateName',function(req,res) {
 router.get('/:boardId',function(req,res,next) {
   Boards.getBoardById(req.params.boardId,function(error,board) {
     if(!error && board) {
-      res.json(board);
+      return res.json(board);
     }
     else {
       if(!board) {
-        console.log(error);
-        res.json({error: "Something Went wrong."});
-        next(err);
+        return res.status(500).send(error.message);
       }
     }
   });
 });
 
+// to update the name of the board
 router.post('/updateName',function(req,res,next) {
   try {
     if(!req.body.boardId)
