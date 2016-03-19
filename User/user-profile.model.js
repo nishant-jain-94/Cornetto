@@ -54,6 +54,6 @@ var UserProfileSchema = new mongoose.Schema({
 
 UserProfileSchema.statics.findUser = function(userId,cb) {
   return this.find({'_id':userId},cb);
-}
+};
 
 module.exports = mongoose.model('User',UserProfileSchema,'userProfileSchema');

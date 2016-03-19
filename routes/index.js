@@ -1,4 +1,4 @@
-var UserProfile = require('../models/user-profile');
+var UserProfile = require('../User/user-profile.model');
 
 module.exports = function(app,passport) {
 

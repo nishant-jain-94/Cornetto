@@ -11,10 +11,10 @@ require('./authentication/auth-init')(passport);
 var flash = require('connect-flash');
 var session = require('express-session');
 var util = require('util');
-var users = require('./routes/users');
-var boards = require('./routes/boards');
+var users = require('./User/user.controller');
+var boards = require('./board/board.controller');
 var home = require('./routes/home');
-var cards = require('./routes/cards');
+var cards = require('./Card/card.controller');
 var dbURI = 'mongodb://localhost/Project_Trello';
 var RedisStore = require('connect-redis')(session);
 var app = express();
@@ -35,8 +35,7 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use(express.static(path.join(__dirname, 'staticDesign')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-/*Session related middlewares*/
-// #to be uncommented
+// /*Session related middlewares*/
 // app.use(session({
 // store: new RedisStore({
 //   host: '127.0.0.1',

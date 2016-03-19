@@ -13,9 +13,14 @@ module.exports = function(grunt) {
                 src: 'public/javascripts/**/*.js'
             },
             all: {
-                src: ['Gruntfile.js','public/javascripts/**/*.js']
+                src: ['Gruntfile.js','public/javascripts/**/*.js','User/**/*.js','Card/**/*.js','Board/**/*.js']
             },
 
+        },
+        mochaTest: {
+          all: {
+            src: ['**/*.spec.js']
+          }
         },
         express: {
             server: {
@@ -23,6 +28,7 @@ module.exports = function(grunt) {
                     port: 8080,
                     hostname: '0.0.0.0',
                     server: path.resolve('./app.js'),
+                    serverreload: true,
                     livereload: true,
                     bases: [path.resolve(__dirname,'public')],
                     showStack: true
@@ -40,5 +46,5 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default',['jshint','express','keepalive']);
+    grunt.registerTask('default',['jshint','mochaTest','keepalive']);
 };

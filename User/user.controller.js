@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var UserProfile = require('.././models/user-profile');
-var Board = require('.././models/board');
+var UserProfile = require('../User/user-profile.model');
+var Board = require('../board/board.model');
 var Team = require('.././models/team');
 
 var createBoard = function(req,res,next) {
@@ -30,7 +30,7 @@ var createBoard = function(req,res,next) {
       console.log(err);
     }
   });
-}
+};
 
 var createTeam = function(req,res,next) {
   var teamName = req.params.teamName;
@@ -45,7 +45,7 @@ var createTeam = function(req,res,next) {
     }
   });
   next();
-}
+};
 
 var showAllBoards = function(req,res,next) {
   Board.find(function(err,data) {
@@ -56,7 +56,7 @@ var showAllBoards = function(req,res,next) {
     }
     res.render('users/home',{ boards: data });
   });
-}
+};
 
 router.get('/boards',showAllBoards);
 

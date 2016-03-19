@@ -3,9 +3,10 @@ var expect = require('chai').expect;
 var request = require('supertest');
 var sinon = require('sinon');
 var mongoose = require('mongoose');
+var should = require('should');
 
 var app = require('../bin/www');
-var board = require('../models/board');
+var board = require('../board/board.model');
 var createStub = sinon.stub(board,'create');
 var findByIdStub = sinon.stub(board,'findById');
 var updateStub = sinon.stub(board,'update');
@@ -121,13 +122,13 @@ describe('Create a new Board',function() {
 
   });
 
-  describe('#get an existing board with invalid boardId',function() {
+  describe('#a request with invalid boardId',function() {
     it('should throw an exception',function(done) {
       request
         .get('/boards/56e3a97450f83be1329ass08b')
-        .expect(500,"Argument passed in must be a single String of 12 bytes or a string of 24 hex characters",done)
+        .expect(500,"Argument passed in must be a single String of 12 bytes or a string of 24 hex characters",done);
     });
-  })
+  });
 
   describe("#add a new lane",function() {
     var findByIdAndUpdateStub = sinon.stub(board,'findByIdAndUpdate');
@@ -166,7 +167,7 @@ describe('Create a new Board',function() {
     });
   });
 
-  describe("#update the lane name",function() {
+  describe("#update the lane Title",function() {
     beforeEach(function() {
       updateStub.withArgs(
         {'lanes._id':mongoose.Types.ObjectId('56e3a97450f83be1329ab082')},
@@ -196,7 +197,7 @@ describe('Create a new Board',function() {
 
     it('Should update the name of the lane',function(done) {
       request
-        .post('/boards/l/updateName')
+        .post('/boards/l/updateTitle')
         .send({
           laneId: '56e3a97450f83be1329ab082',
           laneName: 'Updated Test Lane'
@@ -206,11 +207,11 @@ describe('Create a new Board',function() {
             return done(error);
           expect(response.body.lanes[0].name).to.be.equal('Updated Test Lane');
           return done();
-        })
+        });
     });
   });
 
-  describe("#update board name",function() {
+  describe("#update board Title",function() {
     beforeEach(function() {
       findByIdAndUpdateStub = sinon.stub(board,'findByIdAndUpdate');
       findByIdAndUpdateStub.
@@ -245,7 +246,7 @@ describe('Create a new Board',function() {
 
     it("Should update the name of the board",function(done) {
       request
-        .post('/boards/updateName')
+        .post('/boards/updateTitle')
         .send({
           boardId: '56e3a97450f83be1329ab080',
           boardName: 'Updated Test Board'
@@ -258,5 +259,4 @@ describe('Create a new Board',function() {
         });
     });
   });
-
 }); // end of describe Board

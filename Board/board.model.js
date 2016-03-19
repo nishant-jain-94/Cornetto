@@ -1,19 +1,20 @@
 var mongoose = require('mongoose');
-var Card = require('./card');
-var UserProfile = require('./user-profile');
+var Card = require('../Card/card.model');
+var UserProfile = require('../User/user-profile.model');
 
 var BoardSchema = new mongoose.Schema({
   "name": { type: String, required: true },
   "url": String,
+  "desc": String,
   "team": {
     "type": mongoose.Schema.Types.ObjectId,
     "ref": 'Team'
   },
   "prefs": {
     "backgroundColor": { type: String, required: true },
-    "permissionLevel": { type: String, required: true, enum: ['Public','Private'] },
+    "permissionLevel": { type: String, required: true, enum: ['public','private'] },
     "backgroundImage": { type: String },
-    "comments": {type: String, required: true, enum: ['Public','Private'] }
+    "comments": {type: String, required: true, enum: ['public','members'] }
   },
   "lanes": [
     {
@@ -23,7 +24,7 @@ var BoardSchema = new mongoose.Schema({
   ],
   "members": [
     {
-      "member":
+      "memberId":
       {
         "type": mongoose.Schema.Types.ObjectId,
         "ref": 'User'
@@ -46,7 +47,7 @@ BoardSchema.statics.addLane = function(boardId,laneName,cb) {
 * laneName - refers to the updated name of the lane.
 * cb - refers to the callback which is to be called once the lane name is updated.
 */
-BoardSchema.statics.updateLaneName = function(laneId,laneName,cb) {
+BoardSchema.statics.updateLaneTitle = function(laneId,laneName,cb) {
   this.update({'lanes._id':mongoose.Types.ObjectId(laneId)},{'$set': {'lanes.$.name' : laneName}},cb);
 };
 
@@ -63,7 +64,7 @@ BoardSchema.statics.createBoard = function(board,cb){
 * boardName - boardName refers to the new name which has to be given to the board.
 * cb - refers to the callback to be called once the update operation is completed.
 */
-BoardSchema.statics.updateBoardName = function(boardId,boardName,cb) {
+BoardSchema.statics.updateBoardTitle = function(boardId,boardName,cb) {
   console.log(boardId,boardName);
   this.findByIdAndUpdate(mongoose.Types.ObjectId(boardId),{'name':boardName},{new: true},cb);
 };
@@ -110,8 +111,8 @@ BoardSchema.statics.addCardToLane = function(laneId,cardId,cb) {
 */
 BoardSchema.statics.getBoardById = function(boardId,cb) {
   try {
-    var boardId = mongoose.Types.ObjectId(boardId);
-    this.findById(boardId,cb);
+    var boardID = mongoose.Types.ObjectId(boardId);
+    this.findById(boardID,cb);
   }
   catch(e) {
     cb(e);

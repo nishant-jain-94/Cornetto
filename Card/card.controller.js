@@ -4,7 +4,7 @@ var router = express.Router();
 // var User = require('.././models/userSchema');
 // var Board = require('.././models/boardSchema');
 // var Team = require('.././models/teamSchema');
-var Card = require('.././models/card');
+var Card = require('../Card/card.model');
 
 var createCard = function(req,res,next) {
   var title = req.body.title;
@@ -21,15 +21,15 @@ var createCard = function(req,res,next) {
   },function(err,doc) {
     res.json(doc);
   });
-}
+};
 
 var getCards = function(req,res,next) {
   var boardId = req.param.boardId;
   Card.find({ boardId: boardId },function(err,docs) {
     req.cards = docs;
     next();
-  })
-}
+  });
+};
 
 router.post('/create',createCard);
 

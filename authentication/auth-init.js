@@ -4,8 +4,8 @@ var GoogleStrategy = require('passport-google').Strategy;
 var authConfig = require('../config/auth-config').Strategy;
 // Importing User model which is to be used while saving and retrieving the details of the user.
 
-var UserCredential = require('../models/user-credential');
-var UserProfile = require('../models/user-profile');
+var UserCredential = require('../User/user-credential.model');
+var UserProfile = require('../User/user-profile.model');
 var mongoose = require('mongoose');
 
 module.exports = function(passport) {
