@@ -24,7 +24,7 @@ var UserProfileSchema = new mongoose.Schema({
         cardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Card'},
         cardTitle: {type: String},
         boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'},
-        lanedId: { type: mongoose.scheme.Types.ObjectId },
+        lanedId: { type: mongoose.Schema.Types.ObjectId },
         badges: {
           isDescAvailable: Boolean,
           checkListItems: Number,
@@ -33,15 +33,15 @@ var UserProfileSchema = new mongoose.Schema({
           isAttachmentAvailable: Boolean
         }
       }
-    ]
+    ],
     teams: [
         {
-            teamId: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'}
+            teamId: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'},
             teamName: String,
             url: String,
             boards: [
                 {
-                    boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'}
+                    boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'},
                     boardTitle: {type: String},
                     boardDesc: {type: String},
                     boardType: {type: String}
@@ -63,7 +63,7 @@ var UserProfileSchema = new mongoose.Schema({
         {
             deviceName: String,
             deviceId: String,
-            deviceType: String,
+            deviceType: String
         }
     ]
 },{timestamp: true});
@@ -92,13 +92,13 @@ UserProfileSchema.statics.createProfile = function(userId,profile,cb) {
   catch(exception) {
     cb(exception,null);
   }
-}
+};
 
 UserProfileSchema.statics.changeAvatar = function(userId,avatar,cb) {
   try {
     this.findByIdAndUpdate(userId,{$set: {avatar: avatar}},cb);
   }
-  catch(Exception ex) {
+  catch(ex) {
     cb(ex,null);
   }
 };
@@ -107,7 +107,11 @@ UserProfileSchema.statics.changeUserDetails = function(userDetails,cb) {
 
 };
 
-UserProfile.statics.addCard = function(userId,card) {
+UserProfileSchema.statics.addTeam = function(userId,team,cb) {
+  this.findByIdAndUpdate(userId,{$push: {teams: team}},cb);
+};
+
+UserProfileSchema.statics.addCard = function(userId,card) {
   try {
     this.findByIdAndUpdate({'_id':userId},{$push: {
       cards: card
@@ -124,7 +128,7 @@ UserProfileSchema.statics.addBoard = function(userId,board,cb) {
   }
   catch(exception) {
     cb(exception,null);
-  });}
+  }
 };
 
 module.exports = mongoose.model('User',UserProfileSchema,'userProfileSchema');

@@ -140,7 +140,7 @@ BoardSchema.statics.addCardToLane = function(laneId,cardId,cb) {
     this.update("lanes._Id",{$push: {'lanes.$.cards': cardId}},cb);
   }
   catch(exception) {
-    cb(exception,null)
+    cb(exception,null);
   }
 };
 

@@ -51,6 +51,9 @@ module.exports = function(passport) {
                      throw err;
                   var userProfile = new UserProfile();
                   userProfile.userId = userCredentials._id;
+                  userProfile.displayName = userCredentials.displayName;
+                  userProfile.email = userCredentials.email;
+                  userProfile.initial = 
                   userProfile.save(function(err) {
                     if(!err)
                     return done(null, userProfile);

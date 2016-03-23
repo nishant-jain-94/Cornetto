@@ -1,12 +1,12 @@
-  var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 var UserCredentialSchema = new mongoose.Schema({
   local: {
     email: String,
-    password: String // Will be generated using slugify like ashokjain18
+    password: String,// Will be generated using slugify like ashokjain18
     displayName: String,
-    username: String,
+    username: String
   },
   facebook: {
     id: String, //Id received from the fb
