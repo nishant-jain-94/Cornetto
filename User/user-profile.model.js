@@ -4,30 +4,48 @@ var mongoose = require('mongoose');
 var UserProfileSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'UserProfile'
+        ref: 'UserCredential'
     },
     username: String, // Slugified name (sreyansjain18)
     displayName: String, // name which has to be displayed across the ui (Sreyans Jain)
     email: String,
     url: String,
-    local: {
-        password: String
-    },
     boards: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Board'
+            boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'},
+            boardTitle: {type: String},
+            boardDesc: {type: String},
+            boardType: {type: String},
+            backgroundColor: {type: String}
         }
     ],
+    cards: [
+      {
+        cardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Card'},
+        cardTitle: {type: String},
+        boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'},
+        lanedId: { type: mongoose.scheme.Types.ObjectId },
+        badges: {
+          isDescAvailable: Boolean,
+          checkListItems: Number,
+          numberOfItemsChecked: Number,
+          numberOfComments: Number,
+          isAttachmentAvailable: Boolean
+        }
+      }
+    ]
     teams: [
         {
-            name: String,
+            teamId: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'}
+            teamName: String,
             url: String,
             boards: [
                 {
-                    name: String,
-                    url: String,
-                    backgroundColor: String
+                    boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'}
+                    boardTitle: {type: String},
+                    boardDesc: {type: String},
+                    boardType: {type: String}
+
                 }
             ]
         }
@@ -47,13 +65,66 @@ var UserProfileSchema = new mongoose.Schema({
             deviceId: String,
             deviceType: String,
         }
-    ],
-    accountcreatedOn: Date,
-    emailNotifications: String
-});
+    ]
+},{timestamp: true});
 
 UserProfileSchema.statics.findUser = function(userId,cb) {
-  return this.find({'_id':userId},cb);
+  try {
+    this.findById({'_id':userId},cb);
+  }
+  catch(exception) {
+    cb(exception,null);
+  }
+};
+
+UserProfileSchema.statics.createProfile = function(userId,profile,cb) {
+  try {
+    this.create({
+      userId: userId,
+      username: profile.username,
+      displayName: profile.username,
+      email: profile.email,
+      initial: profile.initial,
+      avatar: profile.avatar,
+      bio: profile.bio
+    });
+  }
+  catch(exception) {
+    cb(exception,null);
+  }
+}
+
+UserProfileSchema.statics.changeAvatar = function(userId,avatar,cb) {
+  try {
+    this.findByIdAndUpdate(userId,{$set: {avatar: avatar}},cb);
+  }
+  catch(Exception ex) {
+    cb(ex,null);
+  }
+};
+
+UserProfileSchema.statics.changeUserDetails = function(userDetails,cb) {
+
+};
+
+UserProfile.statics.addCard = function(userId,card) {
+  try {
+    this.findByIdAndUpdate({'_id':userId},{$push: {
+      cards: card
+    }});
+  }
+  catch(exception) {
+    cb(exception,null);
+  }
+};
+
+UserProfileSchema.statics.addBoard = function(userId,board,cb) {
+  try {
+    this.findByIdAndUpdate({'_id':userId},{$push: {boards: board}},cb);
+  }
+  catch(exception) {
+    cb(exception,null);
+  });}
 };
 
 module.exports = mongoose.model('User',UserProfileSchema,'userProfileSchema');
