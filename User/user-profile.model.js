@@ -19,37 +19,37 @@ var UserProfileSchema = new mongoose.Schema({
             backgroundColor: {type: String}
         }
     ],
-    cards: [
-      {
-        cardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Card'},
-        cardTitle: {type: String},
-        boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'},
-        lanedId: { type: mongoose.Schema.Types.ObjectId },
-        badges: {
-          isDescAvailable: Boolean,
-          checkListItems: Number,
-          numberOfItemsChecked: Number,
-          numberOfComments: Number,
-          isAttachmentAvailable: Boolean
-        }
-      }
-    ],
-    teams: [
-        {
-            teamId: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'},
-            teamName: String,
-            url: String,
-            boards: [
-                {
-                    boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'},
-                    boardTitle: {type: String},
-                    boardDesc: {type: String},
-                    boardType: {type: String}
-
-                }
-            ]
-        }
-    ],
+    // cards: [
+    //   {
+    //     cardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Card'},
+    //     cardTitle: {type: String},
+    //     boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'},
+    //     lanedId: { type: mongoose.Schema.Types.ObjectId },
+    //     badges: {
+    //       isDescAvailable: Boolean,
+    //       checkListItems: Number,
+    //       numberOfItemsChecked: Number,
+    //       numberOfComments: Number,
+    //       isAttachmentAvailable: Boolean
+    //     }
+    //   }
+    // ],
+    // teams: [
+    //     {
+    //         teamId: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'},
+    //         teamName: String,
+    //         url: String,
+    //         boards: [
+    //             {
+    //                 boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'},
+    //                 boardTitle: {type: String},
+    //                 boardDesc: {type: String},
+    //                 boardType: {type: String}
+    //
+    //             }
+    //         ]
+    //     }
+    // ],
     initial: String,
     avatar: String,
     bio: String,
@@ -68,16 +68,7 @@ var UserProfileSchema = new mongoose.Schema({
     ]
 },{timestamp: true});
 
-UserProfileSchema.statics.findUser = function(userId,cb) {
-  try {
-    this.findById({'_id':userId},cb);
-  }
-  catch(exception) {
-    cb(exception,null);
-  }
-};
-
-UserProfileSchema.statics.createProfile = function(userId,profile,cb) {
+UserProfileSchema.statics.createUserProfile = function(userId,profile,cb) {
   try {
     this.create({
       userId: userId,
@@ -94,6 +85,34 @@ UserProfileSchema.statics.createProfile = function(userId,profile,cb) {
   }
 };
 
+UserProfileSchema.statics.findUserProfile = function(userId,cb) {
+  try {
+    this.findById({'_id':userId},cb);
+  }
+  catch(exception) {
+    cb(exception,null);
+  }
+};
+
+UserProfileSchema.statics.modifyUserProfile = function(userId,userProfile,cb) {
+  try {
+    this.findByIdAndUpdate(userId,userProfile,cb);
+  }
+  catch(exception) {
+    cb(exception,null);
+  }
+};
+
+UserProfileSchema.statics.deleteUserProfile = function(userId,cb) {
+  try{
+    this.findByIdAndRemove(userId,cb);
+  }
+  catch(exception) {
+    cb(exception,null);
+  }
+};
+
+
 UserProfileSchema.statics.changeAvatar = function(userId,avatar,cb) {
   try {
     this.findByIdAndUpdate(userId,{$set: {avatar: avatar}},cb);
@@ -107,20 +126,20 @@ UserProfileSchema.statics.changeUserDetails = function(userDetails,cb) {
 
 };
 
-UserProfileSchema.statics.addTeam = function(userId,team,cb) {
-  this.findByIdAndUpdate(userId,{$push: {teams: team}},cb);
-};
+// UserProfileSchema.statics.addTeam = function(userId,team,cb) {
+//   this.findByIdAndUpdate(userId,{$push: {teams: team}},cb);
+// };
 
-UserProfileSchema.statics.addCard = function(userId,card) {
-  try {
-    this.findByIdAndUpdate({'_id':userId},{$push: {
-      cards: card
-    }});
-  }
-  catch(exception) {
-    cb(exception,null);
-  }
-};
+// UserProfileSchema.statics.addCard = function(userId,card) {
+//   try {
+//     this.findByIdAndUpdate({'_id':userId},{$push: {
+//       cards: card
+//     }});
+//   }
+//   catch(exception) {
+//     cb(exception,null);
+//   }
+// };
 
 UserProfileSchema.statics.addBoard = function(userId,board,cb) {
   try {

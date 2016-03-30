@@ -6,12 +6,18 @@ var mongoose = require('mongoose');
 var should = require('should');
 
 var app = require('../bin/www');
-var board = require('../board/board.model');
+var board = require('./board.model');
+
 var createStub = sinon.stub(board,'create');
 var findByIdStub = sinon.stub(board,'findById');
 var updateStub = sinon.stub(board,'update');
 
 request = request('http://localhost:8080');
+
+if(process.env.NODE_ENV !== 'development') {
+  console.log('NODE_ENV=' + process.env.NODE_ENV + 'which might cause problems.');
+  process.exit(1);
+}
 
 describe('Create a new Board',function() {
 
