@@ -14,7 +14,7 @@ var UserProfileSchema = new mongoose.Schema({
     boards: [
         {
             boardId: {type: mongoose.Schema.Types.ObjectId, ref: 'Board'},
-            boardTitle: {type: String},
+            boardTitle: {type: String,required: true},
             boardDesc: {type: String},
             boardType: {type: String},
             backgroundColor: {type: String}
@@ -84,7 +84,23 @@ UserProfileSchema.statics.createUserProfile = function(profile,cb) {
 
 UserProfileSchema.statics.findUserProfile = function(query,cb) {
   try {
-    this.findOne(query,cb);
+    var sort = query.sort ? query.sort : '';
+    var limit = query.limit ? query.limit : 0;
+    var fields = query.fields ? query.fields : '';
+    query = _.pick(query,_.allKeys(this.schema.paths));
+    console.log(query);
+    query = _.mapObject(query,function(value,key) {
+      if(value.indexOf('_') == 0){
+        return { $regex: new RegExp(value.substring(1),'g') }
+      }
+      return value;
+    });
+    console.log(query);
+    this.find(query)
+        .select(fields)
+        .sort(sort)
+        .limit(limit)
+        .exec(cb);
   }
   catch(exception) {
     cb(exception,null);
@@ -93,9 +109,8 @@ UserProfileSchema.statics.findUserProfile = function(query,cb) {
 
 // Will update only those properties which are editable. Any properties which are passed other than the editable properties will be silently ignored.
 UserProfileSchema.statics.modifyUserProfile = function(userId,userProfile,cb) {
-  userProfile = _.pick(userProfile,editableProperties);
-  console.log(userProfile);
   try {
+    userProfile = _.pick(userProfile,editableProperties);
     this.findOneAndUpdate({userId: mongoose.Types.ObjectId(userId)},userProfile,{new: true},cb);
   }
   catch(exception) {
