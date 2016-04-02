@@ -1,7 +1,13 @@
 var db = {
-  'development': 'mongodb://localhost/Cornetto-Development',
-  'test': 'mongodb://localhost/Cornetto-Test',
-  'production': 'mongodb://localhost/Cornetto-Production'
+  development: {
+    db: 'mongodb://localhost/Cornetto-Development'
+  },
+  test: {
+    db: 'mongodb://localhost/Cornetto-Test'
+  },
+  production: {
+    db: 'mongodb://localhost/Cornetto-Production'
+  }
 };
 
 module.exports = db;
