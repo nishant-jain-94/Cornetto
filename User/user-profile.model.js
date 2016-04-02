@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var _ = require('underscore');
 
 // User can login both using email and username
 var UserProfileSchema = new mongoose.Schema({
@@ -7,8 +8,8 @@ var UserProfileSchema = new mongoose.Schema({
         ref: 'UserCredential'
     },
     username: String, // Slugified name (sreyansjain18)
-    displayName: String, // name which has to be displayed across the ui (Sreyans Jain)
-    email: String,
+    displayName: {type:String, required: true}, // name which has to be displayed across the ui (Sreyans Jain)
+    email: {type:String, required: true},
     url: String,
     boards: [
         {
@@ -50,15 +51,9 @@ var UserProfileSchema = new mongoose.Schema({
     //         ]
     //     }
     // ],
-    initial: String,
+    initial: {type:String, required: true},
     avatar: String,
     bio: String,
-    emailAddress: [
-        {
-            emailId: String,
-            addedOn: Date
-        }
-    ],
     sessions: [
         {
             deviceName: String,
@@ -68,63 +63,55 @@ var UserProfileSchema = new mongoose.Schema({
     ]
 },{timestamp: true});
 
-UserProfileSchema.statics.createUserProfile = function(userId,profile,cb) {
+var editableProperties = ['displayName','email','initial','avatar'];
+
+UserProfileSchema.statics.createUserProfile = function(profile,cb) {
   try {
     this.create({
-      userId: userId,
+      userId: profile.userId,
       username: profile.username,
       displayName: profile.username,
       email: profile.email,
       initial: profile.initial,
       avatar: profile.avatar,
       bio: profile.bio
-    });
+    },cb);
   }
   catch(exception) {
     cb(exception,null);
   }
 };
 
-UserProfileSchema.statics.findUserProfile = function(userId,cb) {
+UserProfileSchema.statics.findUserProfile = function(query,cb) {
   try {
-    this.findById({'_id':userId},cb);
+    this.findOne(query,cb);
   }
   catch(exception) {
     cb(exception,null);
   }
 };
 
+// Will update only those properties which are editable. Any properties which are passed other than the editable properties will be silently ignored.
 UserProfileSchema.statics.modifyUserProfile = function(userId,userProfile,cb) {
+  userProfile = _.pick(userProfile,editableProperties);
+  console.log(userProfile);
   try {
-    this.findByIdAndUpdate(userId,userProfile,cb);
+    this.findOneAndUpdate({userId: mongoose.Types.ObjectId(userId)},userProfile,{new: true},cb);
   }
   catch(exception) {
     cb(exception,null);
   }
 };
 
-UserProfileSchema.statics.deleteUserProfile = function(userId,cb) {
+UserProfileSchema.statics.removeUserProfile = function(query,cb) {
   try{
-    this.findByIdAndRemove(userId,cb);
+    this.remove(query,cb);
   }
   catch(exception) {
     cb(exception,null);
   }
 };
 
-
-UserProfileSchema.statics.changeAvatar = function(userId,avatar,cb) {
-  try {
-    this.findByIdAndUpdate(userId,{$set: {avatar: avatar}},cb);
-  }
-  catch(ex) {
-    cb(ex,null);
-  }
-};
-
-UserProfileSchema.statics.changeUserDetails = function(userDetails,cb) {
-
-};
 
 // UserProfileSchema.statics.addTeam = function(userId,team,cb) {
 //   this.findByIdAndUpdate(userId,{$push: {teams: team}},cb);
